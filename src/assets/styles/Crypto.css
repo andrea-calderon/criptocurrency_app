@@ -1,0 +1,22 @@
+.individual-crypto {
+  border: 1px solid skyblue;
+  border-left: 10px solid skyblue;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+.label {
+  color: skyblue;
+}
+
+.info {
+  color: rgb(200, 200, 200);
+}
+
+.positive {
+  color: greenyellow;
+}
+
+.negative {
+  color: red;
+}

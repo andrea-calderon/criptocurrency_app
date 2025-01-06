@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
+import Crypto from "./components/Crypto";
 import axios from "axios";
-import "./App.css";
+import "./assets/styles/App.css";
 
 function App() {
   const API_URL = import.meta.env.VITE_API_URL;
@@ -13,7 +14,7 @@ function App() {
         setCryptos(data.data.data);
       })
       .catch(() => {
-        console.error("la peticion fallo");
+        console.error("The petutuin failed");
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -21,17 +22,24 @@ function App() {
   if (!cryptos) return <span>Loading...</span>;
 
   return (
-    <>
-      <h2>Cryptocurrency real-time activity </h2>
+    <div className="app-container">
+      <h1 className="app-title">Cryptocurrencies real-time prices</h1>
 
-      <ol>
-        {cryptos.map(({ id, name, priceUsd }) => (
-          <li key={id}>
-            Nombre: {name} Precio: {priceUsd}
-          </li>
-        ))}
-      </ol>
-    </>
+      <div className="crypto-container">
+        {cryptos.map(
+          ({ id, name, priceUsd, symbol, rank, changePercent24Hr }) => (
+            <Crypto
+              key={id}
+              name={name}
+              symbol={symbol}
+              priceUsd={priceUsd}
+              rank={rank}
+              changePercent24Hr={changePercent24Hr}
+            />
+          )
+        )}
+      </div>
+    </div>
   );
 }
 
